@@ -1,23 +1,23 @@
 #include<bits/stdc++.h>
 using namespace std;
-//µ¥Á´±í¶¨Òå
+//å•é“¾è¡¨å®šä¹‰
 typedef struct LNode {
 	int data;
 	LNode* next;
-}LNode, * linklist;//linklist ÊÇ LNode* µÄ±ğÃû£¬ LNode *Ç¿µ÷ÕâÊÇÒ»¸ö½áµã£¬LinkListÇ¿µ÷ÕâÊÇ¸öµ¥Á´±í
+}LNode, * linklist;//linklist æ˜¯ LNode* çš„åˆ«åï¼Œ LNode *å¼ºè°ƒè¿™æ˜¯ä¸€ä¸ªç»“ç‚¹ï¼ŒLinkListå¼ºè°ƒè¿™æ˜¯ä¸ªå•é“¾è¡¨
 
-//³õÊ¼»¯Á´±í
+//åˆå§‹åŒ–é“¾è¡¨
 bool InitList(linklist& l) {
 	l = (LNode*)malloc(sizeof(LNode));
-	if (l == NULL) return false;//´´½¨Ê§°Ü
+	if (l == NULL) return false;//åˆ›å»ºå¤±è´¥
 	l->next = NULL;
 	return true;
 }
-//Çå¿ÕÁ´±í
+//æ¸…ç©ºé“¾è¡¨
 void Empty(linklist& l) {
 	l->next = NULL;
 }
-//´òÓ¡Á´±í
+//æ‰“å°é“¾è¡¨
 void PrintList(linklist l) {
 	while (l->next != NULL) {
 		printf("%d->", l->next->data);
@@ -25,18 +25,18 @@ void PrintList(linklist l) {
 	}
 	printf("NULL\n");
 }
-//Çó±í³¤
+//æ±‚è¡¨é•¿
 int Length(linklist l) {
 	int len = 0;
-	LNode* p = l;//½«Ö¸Õë±äÁ¿ p Ö¸ÏòÁ´±íÍ·½Úµã l
+	LNode* p = l;//å°†æŒ‡é’ˆå˜é‡ p æŒ‡å‘é“¾è¡¨å¤´èŠ‚ç‚¹ l
 	while (p->next != NULL) {
 		p = p->next;
 		len++;
 	}
-	cout<<"Á´±í³¤¶ÈÎª£º"<<len<<endl;
+	cout<<"é“¾è¡¨é•¿åº¦ä¸ºï¼š"<<len<<endl;
 	return len;
 }
-//°´Î»²éÕÒ
+//æŒ‰ä½æŸ¥æ‰¾
 void FindLocate(linklist l, int i) {
 	int j = 0;
 	LNode* p = l;
@@ -45,62 +45,62 @@ void FindLocate(linklist l, int i) {
 		j++;
 	}
 	if (j == i) {
-		cout << "µÚ" << i << "¸ö½áµãÖµÎª£º" << p->data << endl;//Êä³ö²éÕÒµ½µÄ½áµãµÄÖµ
+		cout << "ç¬¬" << i << "ä¸ªç»“ç‚¹å€¼ä¸ºï¼š" << p->data << endl;//è¾“å‡ºæŸ¥æ‰¾åˆ°çš„ç»“ç‚¹çš„å€¼
 	}
 	else {
-		cout << "²éÕÒÊ§°Ü" << endl;
+		cout << "æŸ¥æ‰¾å¤±è´¥" << endl;
 	}
 }
-//°´Öµ²éÕÒ
+//æŒ‰å€¼æŸ¥æ‰¾
 void FindValue(linklist l, int e) {
 	LNode* p = l;
 	int count = 0;
 	while (p->next != NULL) {
 		count++;
 		if (p->next->data == e) {
-			cout << "¸ÃÖµÔÚµÚ" << count << "¸ö½áµã" << endl;
+			cout << "è¯¥å€¼åœ¨ç¬¬" << count << "ä¸ªç»“ç‚¹" << endl;
 			return;
 		}
 		p = p->next;
 	}
-	cout << "¸ÃÖµ²»´æÔÚ" << endl;
+	cout << "è¯¥å€¼ä¸å­˜åœ¨" << endl;
 }
-//Í·²å·¨,ĞÎ³ÉµÄÁ´±íÎªµ¹Ğò
+//å¤´æ’æ³•,å½¢æˆçš„é“¾è¡¨ä¸ºå€’åº
 bool InsertFront(linklist& l, int e) {
-	if (l == NULL) return false;//Á´±íÎª¿Õ
+	if (l == NULL) return false;//é“¾è¡¨ä¸ºç©º
 	LNode* p = (LNode*)malloc(sizeof(LNode));
-	if (p == NULL) return false;//ÉêÇë½áµãÊ§°Ü
+	if (p == NULL) return false;//ç”³è¯·ç»“ç‚¹å¤±è´¥
 	p->data = e;
-	p->next = l->next;//½«ĞÂ½áµã²åÈëµ½Í·½áµãÖ®ºó
-	l->next = p;//Í·½áµãµÄnextÖ¸ÏòĞÂ½áµã
+	p->next = l->next;//å°†æ–°ç»“ç‚¹æ’å…¥åˆ°å¤´ç»“ç‚¹ä¹‹å
+	l->next = p;//å¤´ç»“ç‚¹çš„nextæŒ‡å‘æ–°ç»“ç‚¹
 	return true;
 }
-//Î²²å·¨£¬ĞÎ³ÉµÄÁ´±íÎªÕıĞò
+//å°¾æ’æ³•ï¼Œå½¢æˆçš„é“¾è¡¨ä¸ºæ­£åº
 bool InsertRear(linklist& l, int e) {
-	if (l == NULL) return false; // Á´±íÎª¿Õ
+	if (l == NULL) return false; // é“¾è¡¨ä¸ºç©º
 	LNode* p = (LNode*)malloc(sizeof(LNode));
-	if (p == NULL) return false; // ÉêÇë½áµãÊ§°Ü
+	if (p == NULL) return false; // ç”³è¯·ç»“ç‚¹å¤±è´¥
 	p->data = e;
-	p->next = NULL; // ĞÂ½áµãµÄnextÖ¸ÏòNULL
+	p->next = NULL; // æ–°ç»“ç‚¹çš„nextæŒ‡å‘NULL
 
 	LNode* tail = l;
 	while (tail->next != NULL) {
-		tail = tail->next; // ÕÒµ½Á´±íµÄÎ²½áµã
+		tail = tail->next; // æ‰¾åˆ°é“¾è¡¨çš„å°¾ç»“ç‚¹
 	}
-	tail->next = p; // Î²½áµãµÄnextÖ¸ÏòĞÂ½áµã
+	tail->next = p; // å°¾ç»“ç‚¹çš„nextæŒ‡å‘æ–°ç»“ç‚¹
 	return true;
 }
-//É¾³ıÖ¸¶¨Î»ÖÃµÄ½áµã£¬²¢Êä³ö±»É¾³ıµÄ½áµãµÄÖµ
+//åˆ é™¤æŒ‡å®šä½ç½®çš„ç»“ç‚¹ï¼Œå¹¶è¾“å‡ºè¢«åˆ é™¤çš„ç»“ç‚¹çš„å€¼
 bool DeleteNode(LNode* l, int i) {
 	int k = i;
 	if (i < 1 || i > Length(l))
-		return false; // ÅĞ¶ÏiÊÇ·ñºÏ·¨
+		return false; // åˆ¤æ–­iæ˜¯å¦åˆæ³•
 	LNode* p = l;
 	while (--i) {
 		p = p->next;
 	}
 	LNode* q = p->next;
-	cout << "É¾³ıµÚ" << k << "½Úµã³É¹¦£¬É¾³ıÎª" << q->data << endl;
+	cout << "åˆ é™¤ç¬¬" << k << "èŠ‚ç‚¹æˆåŠŸï¼Œåˆ é™¤ä¸º" << q->data << endl;
 	p->next = q->next;
 	free(q);
 	return true;
